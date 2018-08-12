@@ -7,7 +7,7 @@ function alphabetize(a) {
 
 document.getElementById("findButton").onclick = function findAll() {
 
-
+    var anagrams = {}
 
     for (i = 0; i <= words.length; i++) {
         var word = words[i];
@@ -15,11 +15,16 @@ document.getElementById("findButton").onclick = function findAll() {
         var typedText = document.getElementById("input").value;
 
 
+        if (value in anagrams) {
+            anagrams[value].push(word);
+        } else {
+            anagrams[value] = [word];
+        }
 
 
-        if (value === alphabetize(typedText)) {
+        if (anagrams[value].length > 4) {
             let newSpan = document.createElement("span")
-            let result = document.createTextNode(word + " ")
+            let result = document.createTextNode(anagrams[value] + "---")
             dest.appendChild(newSpan)
             newSpan.appendChild(result)
 
